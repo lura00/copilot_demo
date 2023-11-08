@@ -47,6 +47,7 @@ jobs:
           entry_point: app
           source_dir: .
           trigger_http: true
+          run: gcloud auth application-default login
           service_account_email: ${{ secrets.GCP_SA_EMAIL }}
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           bucket: my-deployment-bucket
