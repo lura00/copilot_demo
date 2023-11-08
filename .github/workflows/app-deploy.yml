@@ -1,0 +1,39 @@
+# A github actions pipeline that deploys and runs app.js on google cloud functions
+# Requires a service account with cloud functions invoker and storage admin roles
+# Requires the following secrets:
+# GCP_PROJECT_ID
+# GCP_SA_KEY
+# GCP_SA_EMAIL
+
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Install dependencies
+        run: npm install
+      - name: Deploy
+        env:
+          GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+          GCP_SA_EMAIL: ${{ secrets.GCP_SA_EMAIL }}
+        run: |
+          gcloud auth activate-service-account --key-file=<(echo "$GCP_SA_KEY") --project="$GCP_PROJECT_ID"
+          gcloud functions deploy app --entry-point=app --runtime=nodejs12 --trigger-http --allow-unauthenticated --source=.
+
+
+## License
+
+# [MIT](LICENSE)
+
+
