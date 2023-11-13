@@ -5,7 +5,7 @@
 // 4. filter the data
 // 5. return the data
 
-// How do I add data for wind speed and humidity?
+// How do I add data for wind speed and humidity?!
 
 import express from "express";
 import fetch from "node-fetch";
