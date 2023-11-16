@@ -1,4 +1,4 @@
-# Github actions pipline that deploys app in ./public/ to google cloud platform cloud functions
+# Github actions pipline that deploys app in ./public/ to google cloud platform cloud functions and run
 
 name: Deploy to Google Cloud Functions
 
