@@ -1,0 +1,203 @@
+/* <!-- Path: public/style.css -->
+<!--This file contains the styling for the website-->
+<!--The header is styled-->
+<!--The main is styled-->
+<!--The search div is styled-->
+<!--The search input field is styled-->
+<!--The search button is styled-->
+<!--The weather div is styled-->
+<!--The weather-info div is styled-->
+<!--The weather-info__city div is styled-->
+<!--The weather-info__temp div is styled-->
+<!--The weather-info__description div is styled-->
+<!--The weather-info__icon div is styled-->
+<!--The forecast div is styled-->
+<!--The forecast-info div is styled-->
+<!--The forecast-info__day1 div is styled-->
+<!--The forecast-info__day1__date div is styled-->
+<!--The forecast-info__day1__temp div is styled-->
+<!--The forecast-info__day1__description div is styled-->
+<!--The forecast-info__day1__icon div is styled-->
+<!--The forecast-info__day2 div is styled-->
+<!--The forecast-info__day2__date div is styled-->
+<!--The forecast-info__day2__temp div is styled-->
+<!--The forecast-info__day2__description div is styled-->
+<!--The forecast-info__day2__icon div is styled-->
+<!--The forecast-info__day3 div is styled-->
+<!--The forecast-info__day3__date div is styled-->
+<!--The forecast-info__day3__temp div is styled-->
+<!--The forecast-info__day3__description div is styled-->
+<!--The forecast-info__day3__icon div is styled--> */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    background-color: #1e90ff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search input {
+    width: 300px;
+    height: 30px;
+    border: 1px solid #1e90ff;
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.search button {
+    width: 100px;
+    height: 30px;
+    border: 1px solid #1e90ff;
+    border-radius: 5px;
+    background-color: #1e90ff;
+    color: white;
+    font-weight: bold;
+}
+
+.weather {
+    margin-top: 20px;
+    border: 1px solid #1e90ff;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.weather-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.weather-info__city {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.weather-info__temp {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.weather-info__description {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.weather-info__icon {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.forecast {
+    margin-top: 20px;
+    border: 1px solid #1e90ff;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.forecast-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.forecast-info__day1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.forecast-info__day1__date {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day1__temp {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day1__description {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day1__icon {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.forecast-info__day2__date {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day2__temp {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day2__description {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day2__icon {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.forecast-info__day3__date {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day3__temp {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day3__description {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day3__icon {
+    font-size: 20px;
+    font-weight: bold;
+}

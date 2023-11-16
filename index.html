@@ -1,0 +1,367 @@
+<!--Website with a header stating Accenture Weather chanel-->
+<!--A search bar to search for a city-->
+<!--A button to search for the city and that sends the city name to the javascript file-->
+<!--A div to display the weather information-->
+<!--A div to display the weather forecast information-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accenture Weather Channel</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Accenture Weather Channel</h1>
+    </header>
+    <main>
+        <div class="search">
+            <input type="text" id="city" placeholder="Enter a city">
+            <button id="search">Search</button>
+        </div>
+        <div class="weather">
+            <h2>Weather</h2>
+            <div class="weather-info">
+                <div class="weather-info__city"></div>
+                <div class="weather-info__temp"></div>
+                <div class="weather-info__description"></div>
+                <div class="weather-info__icon"></div>
+            </div>
+        </div>
+        <div class="forecast">
+            <h2>Forecast</h2>
+            <div class="forecast-info">
+                <div class="forecast-info__day1">
+                    <div class="forecast-info__day1__date"></div>
+                    <div class="forecast-info__day1__temp"></div>
+                    <div class="forecast-info__day1__description"></div>
+                    <div class="forecast-info__day1__icon"></div>
+                </div>
+                <div class="forecast-info__day2">
+                    <div class="forecast-info__day2__date"></div>
+                    <div class="forecast-info__day2__temp"></div>
+                    <div class="forecast-info__day2__description"></div>
+                    <div class="forecast-info__day2__icon"></div>
+                </div>
+                <div class="forecast-info__day3">
+                    <div class="forecast-info__day3__date"></div>
+                    <div class="forecast-info __day3__temp"></div>
+                    <div class="forecast-info__day3__description"></div>
+                    <div class="forecast-info__day3__icon"></div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <script src="getWeather.js"></script>
+</body>
+</html>
+
+<!--Path: public/getWeather.js-->
+<!--This file contains the code to get the weather information from the API and display it on the website-->
+<!--The API key is stored in a variable-->
+<!--The search button is selected and an event listener is added to it-->
+<!--The event listener calls the function getWeather() when the button is clicked-->
+<!--The function getWeather() gets the city name from the input field and stores it in a variable-->
+<!--The function getWeather() calls the function getWeatherData() and passes the city name as a parameter-->
+<!--The function getWeatherData() makes a GET request to the API and passes the city name and API key as parameters-->
+<!--The function getWeatherData() gets the response from the API and converts it to JSON format-->
+<!--The function getWeatherData() calls the function displayWeather() and passes the response as a parameter-->
+<!--The function displayWeather() displays the weather information on the website-->
+<!--The function displayWeather() gets the city name, temperature, description and icon from the response and stores them in variables-->
+<!--The function displayWeather() displays the city name, temperature, description and icon on the website-->
+<!--The function displayWeather() calls the function getForecast() and passes the city name as a parameter-->
+<!--The function getForecast() makes a GET request to the API and passes the city name and API key as parameters-->
+<!--The function getForecast() gets the response from the API and converts it to JSON format-->
+<!--The function getForecast() calls the function displayForecast() and passes the response as a parameter-->
+<!--The function displayForecast() displays the forecast information on the website-->
+<!--The function displayForecast() gets the date, temperature, description and icon from the response and stores them in variables-->
+<!--The function displayForecast() displays the date, temperature, description and icon on the website-->
+
+<!-- const API_KEY = "1d02662aeb82fa13db9dc559a869edec";
+
+const searchButton = document.getElementById("search");
+searchButton.addEventListener("click", getWeather);
+
+function getWeather() {
+    const city = document.getElementById("city").value;
+    getWeatherData(city)
+        .then((response) => {
+            displayWeather(response);
+            return getForecast(city);
+        })
+        .then((response) => {
+            displayForecast(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
+
+async function getWeatherData(city) {
+    const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+    );
+    const data = await response.json();
+    return data;
+}
+
+function displayWeather(response) {
+    const city = response.name;
+    const temperature = response.main.temp;
+    const description = response.weather[0].description;
+    const icon = response.weather[0].icon;
+
+    document.querySelector(".weather-info__city").innerHTML = city;
+    document.querySelector(".weather-info__temp").innerHTML = temperature + "°C";
+    document.querySelector(".weather-info__description").innerHTML = description;
+    document.querySelector(".weather-info__icon").innerHTML = `<img src="icons/${icon}.png"/>`;
+}
+
+async function getForecast(city) {
+    const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`
+    );
+    const data = await response.json();
+    return data;
+}
+
+
+function displayForecast(response) {
+    const date1 = response.list[0].dt_txt;
+    const temperature1 = response.list[0].main.temp;
+    const description1 = response.list[0].weather[0].description;
+    const icon1 = response.list[0].weather[0].icon;
+
+    const date2 = response.list[1].dt_txt;
+    const temperature2 = response.list[1].main.temp;
+    const description2 = response.list[1].weather[0].description;
+    const icon2 = response.list[1].weather[0].icon;
+
+    const date3 = response.list[2].dt_txt;
+    const temperature3 = response.list[2].main.temp;
+    const description3 = response.list[2].weather[0].description;
+    const icon3 = response.list[2].weather[0].icon;
+
+    document.querySelector(".forecast-info__day1__date").innerHTML = date1;
+    document.querySelector(".forecast-info__day1__temp").innerHTML = temperature1 + "°C";
+    document.querySelector(".forecast-info__day1__description").innerHTML = description1;
+    document.querySelector(".forecast-info__day1__icon").innerHTML = `<img src="icons/${icon1}.png"/>`;
+
+    document.querySelector
+        (".forecast-info__day2__date").innerHTML = date2;
+    document.querySelector(".forecast-info__day2__temp").innerHTML = temperature2 + "°C";
+    document.querySelector(".forecast-info__day2__description").innerHTML = description2;
+    document.querySelector(".forecast-info__day2__icon").innerHTML = `<img src="icons/${icon2}.png"/>`;
+
+    document.querySelector(".forecast-info__day3__date").innerHTML = date3;
+    document.querySelector(".forecast-info__day3__temp").innerHTML = temperature3 + "°C";
+    document.querySelector(".forecast-info__day3__description").innerHTML = description3;
+    document.querySelector(".forecast-info__day3__icon").innerHTML = `<img src="icons/${icon3}.png"/>`;
+} -->
+
+<!-- Path: public/style.css -->
+<!--This file contains the styling for the website-->
+<!--The header is styled-->
+<!--The main is styled-->
+<!--The search div is styled-->
+<!--The search input field is styled-->
+<!--The search button is styled-->
+<!--The weather div is styled-->
+<!--The weather-info div is styled-->
+<!--The weather-info__city div is styled-->
+<!--The weather-info__temp div is styled-->
+<!--The weather-info__description div is styled-->
+<!--The weather-info__icon div is styled-->
+<!--The forecast div is styled-->
+<!--The forecast-info div is styled-->
+<!--The forecast-info__day1 div is styled-->
+<!--The forecast-info__day1__date div is styled-->
+<!--The forecast-info__day1__temp div is styled-->
+<!--The forecast-info__day1__description div is styled-->
+<!--The forecast-info__day1__icon div is styled-->
+<!--The forecast-info__day2 div is styled-->
+<!--The forecast-info__day2__date div is styled-->
+<!--The forecast-info__day2__temp div is styled-->
+<!--The forecast-info__day2__description div is styled-->
+<!--The forecast-info__day2__icon div is styled-->
+<!--The forecast-info__day3 div is styled-->
+<!--The forecast-info__day3__date div is styled-->
+<!--The forecast-info__day3__temp div is styled-->
+<!--The forecast-info__day3__description div is styled-->
+<!--The forecast-info__day3__icon div is styled-->
+<!-- 
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    background-color: #1e90ff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search input {
+    width: 300px;
+    height: 30px;
+    border: 1px solid #1e90ff;
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.search button {
+    width: 100px;
+    height: 30px;
+    border: 1px solid #1e90ff;
+    border-radius: 5px;
+    background-color: #1e90ff;
+    color: white;
+    font-weight: bold;
+}
+
+.weather {
+    margin-top: 20px;
+    border: 1px solid #1e90ff;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.weather-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.weather-info__city {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.weather-info__temp {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.weather-info__description {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.weather-info__icon {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.forecast {
+    margin-top: 20px;
+    border: 1px solid #1e90ff;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.forecast-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.forecast-info__day1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.forecast-info__day1__date {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day1__temp {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day1__description {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day1__icon {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.forecast-info__day2__date {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day2__temp {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day2__description {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day2__icon {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.forecast-info__day3__date {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day3__temp {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day3__description {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forecast-info__day3__icon {
+    font-size: 20px;
+    font-weight: bold;
+}
+``` -->

@@ -1,0 +1,79 @@
+# Write a kubernetes manifest for mongodb deploy to azure kubernetes service (AKS) cluster
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Path: public/aks.yml
+
+# version: '3.7'
+
+# services:
+#   mongo:
+#     image: mongo:latest
+#     secrets:
+#       - source: mongo_password
+#         target: MONGO_PASSWORD
+#     configs:
+#       - source: mongo_config
+#         target: MONGO_CONFIG
+#     volumes:
+#       - type: volume
+#         source: mongo_data
+#         target: /data/db
+#     ports:
+#       - 27017:27017
+#     deploy:
+#       mode: replicated
+#       replicas: 1
+#       placement:
+#         constraints:
+#           - node.role == worker
+#       restart_policy:
+#         condition: on-failure
+#         delay: 5s
+#         max_attempts: 3
+#         window: 120s
+#       resources:
+#         limits:
+#           cpus: '0.5'
+#           memory: 512M
+#         reservations:
+#           cpus: '0.25'
+#           memory: 256M
+#       update_config:
+#         parallelism: 1
+#         delay: 5s
+#         failure_action: rollback
+#         monitor: 60s
+#         max_failure_ratio: 0.5
+#       rollback_config:
+#         parallelism: 1
+#         delay: 5s
+#         failure_action: pause
+#         monitor: 60s
+#         max_failure_ratio: 0.5
+#       labels:
+#         - "com.example.description=This label will be used as a version identifier"
+#         - "com.example.department=IT"
+#         - "com.example.label-with-empty-value"
