@@ -1,5 +1,5 @@
 # Github actions pipline that deploys app in ./public/ to google cloud platform cloud functions
-# on every push to master branch
+
 name: Deploy to Cloud Functions
 
 on:
@@ -9,50 +9,16 @@ on:
 
 jobs:
   deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Install Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
-
-      - name: Install dependencies
-        run: npm install
-
-    #   - name: Build
-    #     run: npm run build
-
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Deploy to Cloud Functions
         uses: google-github-actions/deploy-cloud-functions@main
         with:
           credentials: ${{ secrets.GCP_SA_KEY }}
           project_id: ${{ secrets.GCP_PROJECT_ID }}
-          name: WeatherApp
-          runtime: nodejs12
-          entry_point: handler
-          source: ./public
-          region: europe-west1
-          trigger: HTTP_TRIGGER_TYPE
-          allow_unauthenticated: true
-
-# Enter fullscreen mode Exit fullscreen mode 
-
-# The action above uses a secret called GCLOUD_AUTH, which is a base64 encoded service account key for a google cloud platform service account that has the roles Cloud Functions Developer and Cloud Functions Service Agent.
-
-# The action also uses a secret called GCLOUD_PROJECT_ID, which is the id of the google cloud platform project that the cloud function will be deployed to.
-
-# The action also uses a secret called GCLOUD_FUNCTION_NAME, which is the name of the cloud function that will be deployed.
-
-# The action also uses a secret called HTTP_TRIGGER_TYPE, which is the type of trigger that will be used by the cloud function, e.g. HTTP_TRIGGER_TYPE=HTTP_TRIGGER.
-
-# The action also uses a secret called GCLOUD_REGION, which is the region that the cloud function will be deployed to, e.g. GCLOUD_REGION=europe-west1.
-
-# The action also uses a secret called GCLOUD_RUNTIME, which is the runtime that the cloud function will use, e.g. GCLOUD_RUNTIME=nodejs12.
-
-# The action also uses a secret called GCLOUD_ENTRY_POINT, which is the entry point that the cloud function will use, e.g. GCLOUD_ENTRY_POINT=handler.
-
-# The action also uses a secret called GCLOUD_SOURCE, which is the directory that the cloud function will use, e.g. GCLOUD_SOURCE=./public.
-
-# The action also uses a secret called GCLOUD_ALLOW_UNAUTHENTICATED, which is
+          name: "index"
+          source: ./public/
+            entry_point: "index"
