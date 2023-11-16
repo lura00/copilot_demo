@@ -21,4 +21,3 @@ jobs:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           name: "index"
           source: ./public/
-            entry_point: "index"
